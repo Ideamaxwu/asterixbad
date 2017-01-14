@@ -1,0 +1,8 @@
+use dataverse channels;
+
+for $result in dataset Metadata.Channel where $result.ChannelName = "nearbyTweetChannel"
+for $x in dataset Metadata.Dataset
+where $x.DatasetName = $result.SubscriptionsDatasetName
+or $x.DatasetName = $result.ResultsDatasetName
+order by $x.DatasetName
+return $x;
